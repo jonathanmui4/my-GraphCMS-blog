@@ -1,11 +1,16 @@
 import Link from 'next/link';
 import Logo from './logo';
-const categories = [
-    {name: 'Projects', slug: 'projects'},
-    {name: 'Student Life', slug: 'student-life'},
-]
+import {useEffect, useState} from "react";
+import {getCategories} from "../../services";
 
 function Navbar() {
+    const [categories, setCategories] = useState([]);
+
+    useEffect(() => {
+        getCategories()
+            .then((newCategories) => setCategories(newCategories));
+    }, []);
+
     return (
         <header className="w-full h-24 bg-gray-700 flex justify-between items-center p-3">
             <Link href="/">

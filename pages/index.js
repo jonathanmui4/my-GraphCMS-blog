@@ -1,7 +1,7 @@
 import Head from 'next/head';
 import PostCard from "../components/posts/post-card";
 import PostWidget from "../components/posts/post-widget";
-import Categories from "../components/categories";
+import CategoriesWidget from "../components/categories-widget";
 import Hero from "../components/hero";
 import {Fragment} from "react";
 import {getPosts} from "../services";
@@ -31,7 +31,7 @@ export default function Home(props) {
                     <div className="col-span-1 lg:col-span-4">
                         <div className="relative top-8 lg:sticky">
                             <PostWidget />
-                            <Categories />
+                            <CategoriesWidget />
                         </div>
                     </div>
                 </div>
