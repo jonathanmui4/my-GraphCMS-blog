@@ -11,7 +11,7 @@ export default function Home(props) {
     return (
         <Fragment>
             <Hero />
-            <div className="container mx-auto px-10 mb-8">
+            <div className="container pt-4 mx-auto px-10 mb-8">
                 <Head>
                     <title>Jonathan's Blog</title>
                     <meta
@@ -24,7 +24,7 @@ export default function Home(props) {
                     <div className="col-span-1 lg:col-span-8">
                         {posts.map((post, index) => {
                             return (
-                                <PostCard post={post} key={post.title} />
+                                <PostCard post={post.node} key={post.node.title} />
                             );
                         })}
                     </div>
