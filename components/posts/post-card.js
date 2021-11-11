@@ -6,7 +6,7 @@ function PostCard(props) {
     const { post } = props;
 
     return (
-        <div className="bg-white shadow-lg rounded-lg p-0 lg:p-8 pb-12 mb-8">
+        <div className="bg-gray-100 shadow-lg rounded-lg p-0 lg:p-8 pb-12 mb-8">
             <div className="relative overflow-hidden shadow-md pb-20 mb-6">
                 <Image
                     src={post.image.url}

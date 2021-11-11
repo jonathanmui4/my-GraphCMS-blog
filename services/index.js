@@ -37,3 +37,47 @@ export async function getPosts() {
 
     return result.postsConnection.edges;
 }
+
+export async function getRecentPosts() {
+    const query = gql`
+        query GetPostDetails() {
+            posts(
+                orderBy: createdAt_ASC 
+                last: 3
+            ) {
+                title
+                image {
+                    url
+                }
+                createdAt
+                slug
+            }
+        }
+    `;
+
+    const result = await request(graphqlAPI, query);
+
+    return result.posts;
+}
+
+export async function getSimilarPosts(categories, slug) {
+    const query = gql`
+        query GetPostDetails($slug: String!, $categories: [String!]) {
+            posts(
+                where: { slug_not: $slug, AND: {categories_some: { slug_in: $categories } } }
+                last: 3
+            ) {
+                title
+                image {
+                    url
+                }
+                createdAt
+                slug
+            }
+        }
+    `;
+
+    const result = await request(graphqlAPI, query);
+
+    return result.posts;
+}
