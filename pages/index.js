@@ -4,20 +4,10 @@ import PostWidget from "../components/posts/post-widget";
 import Categories from "../components/categories";
 import Hero from "../components/hero";
 import {Fragment} from "react";
+import {getPosts} from "../services";
 
-export default function Home() {
-
-    const DUMMY_POSTS = [
-        {
-            title: 'React Testing',
-            excerpt: 'Learn React Testing'
-        },
-        {
-            title: 'Tailwind tutorial',
-            excerpt: 'Tailwind tutorial'
-        },
-    ];
-
+export default function Home(props) {
+    const {posts} = props;
     return (
         <Fragment>
             <Hero />
@@ -32,7 +22,7 @@ export default function Home() {
                 </Head>
                 <div className="grid grid-cols-1 lg:grid-cols-12 gap-12">
                     <div className="col-span-1 lg:col-span-8">
-                        {DUMMY_POSTS.map((post, index) => {
+                        {posts.map((post, index) => {
                             return (
                                 <PostCard post={post} key={post.title} />
                             );
@@ -48,4 +38,13 @@ export default function Home() {
             </div>
         </Fragment>
     )
+}
+
+export async function getStaticProps() {
+    const posts = (await getPosts()) || [];
+
+    return {
+        props: {posts},
+        revalidate: 600
+    };
 }
