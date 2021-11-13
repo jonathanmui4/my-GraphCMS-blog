@@ -4,7 +4,7 @@ const graphqlAPI = process.env.NEXT_PUBLIC_GRAPHCMS_ENDPOINT;
 
 export async function getPosts() {
     const query = gql`
-        query MyQuery {
+        query getPosts {
           postsConnection {
             edges {
               node {
@@ -36,6 +36,40 @@ export async function getPosts() {
     const result = await request(graphqlAPI, query);
 
     return result.postsConnection.edges;
+}
+
+export async function getPostDetails(slug) {
+    const query = gql`
+    query GetPostDetails($slug : String!) {
+      post(where: {slug: $slug}) {
+        title
+        excerpt
+        image {
+          url
+        }
+        author{
+          name
+          bio
+          photo {
+            url
+          }
+        }
+        createdAt
+        slug
+        content {
+          raw
+        }
+        categories {
+          name
+          slug
+        }
+      }
+    }
+  `;
+
+    const result = await request(graphqlAPI, query, {slug});
+
+    return result.post;
 }
 
 export async function getRecentPosts() {
@@ -77,7 +111,7 @@ export async function getSimilarPosts(categories, slug) {
         }
     `;
 
-    const result = await request(graphqlAPI, query);
+    const result = await request(graphqlAPI, query, {slug, categories});
 
     return result.posts;
 }
@@ -96,3 +130,4 @@ export async function getCategories() {
 
     return result.categories;
 }
+
