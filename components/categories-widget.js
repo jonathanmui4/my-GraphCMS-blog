@@ -18,11 +18,13 @@ function CategoriesWidget() {
             </h3>
             {categories.map((category) => {
                 return (
-                    <Link key={category.slug} href={`/category/${category.slug}`}>
-                        <span className="cursor-pointer block pb-3 mb-3">
-                            {category.name}
-                        </span>
-                    </Link>
+                    <div className="transition duration-500 hover:bg-blue-600 hover:text-white rounded-full text-center">
+                        <Link key={category.slug} href={`/category/${category.slug}`}>
+                            <span className="cursor-pointer block pb-3 mb-3">
+                                {category.name}
+                            </span>
+                        </Link>
+                    </div>
                 )
             })}
         </div>
