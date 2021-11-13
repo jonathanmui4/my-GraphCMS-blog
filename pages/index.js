@@ -5,6 +5,7 @@ import CategoriesWidget from "../components/categories-widget";
 import Hero from "../components/hero";
 import {Fragment} from "react";
 import {getPosts} from "../services";
+import FeaturedPosts from "../components/sections/featured-posts";
 
 export default function Home(props) {
     const {posts} = props;
@@ -20,6 +21,7 @@ export default function Home(props) {
             </Head>
             <Hero />
             <div className="container pt-4 mx-auto px-10 mb-8">
+                <FeaturedPosts />
                 <div className="grid grid-cols-1 lg:grid-cols-12 gap-12">
                     <div className="col-span-1 lg:col-span-8">
                         {posts.map((post, index) => {
