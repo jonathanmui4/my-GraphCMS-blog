@@ -5,6 +5,14 @@ import moment from "moment";
 function PostDetail(props) {
     const {post} = props;
 
+    //To put inside meta tag
+    function extractContentText() {
+        return post.content.raw.children.map((typeObj, index) => (
+            typeObj.children.map((item, itemIndex) => item.text)
+            )
+        );
+    }
+
     function getContentFragment(index, text, obj, type) {
         let modifiedText = text;
 

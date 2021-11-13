@@ -2,7 +2,7 @@ import { getPosts, getPostDetails } from "../../services";
 import CommentsForm from "../../components/comments/comments-form";
 import Comments from "../../components/comments/comments";
 import PostDetail from "../../components/posts/post-detail";
-import Author from "../../components/posts/author";
+import AuthorInfo from "../../components/posts/author-info";
 import PostWidget from "../../components/posts/post-widget";
 import CategoriesWidget from "../../components/categories-widget";
 
@@ -14,7 +14,7 @@ function PostDetailsPage(props) {
             <div className="grid grid-cols-1 lg:grid-cols-12 gap-12">
                 <div className="col-span-1 lg:col-span-8">
                     <PostDetail post={post} />
-                    <Author author={post.author}/>
+                    <AuthorInfo author={post.author}/>
                     <CommentsForm slug={post.slug}/>
                     <Comments slug={post.slug}/>
                 </div>
