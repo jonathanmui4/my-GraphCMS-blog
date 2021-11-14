@@ -4,12 +4,13 @@ import moment from "moment";
 
 function PostDetail(props) {
     const {post} = props;
-    function getContentFragment(index, text, obj, type) {
+    console.log(post.content.raw.children);
+    function getContentFragment(index, text, obj, type, href) {
         let modifiedText = text;
 
-        if(text.includes("http")) {
+        if(href) {
             modifiedText = (
-                <a key={index} href={text} target="_blank" className="transition duration-200 hover:underline text-blue-500">
+                <a key={index} href={href} target="_blank" className="transition duration-200 hover:underline text-blue-500">
                     {text}
                 </a>
             );
@@ -133,7 +134,7 @@ function PostDetail(props) {
                 {post.content.raw.children.map((typeObj, index) => {
                     const children = typeObj.children.map((item, itemIndex) => {
                         if (item.type === "link") {
-                            return getContentFragment(itemIndex, item.href, item);
+                            return getContentFragment(itemIndex, item.children[0].text, item, null, item.href);
                         }
                         return getContentFragment(itemIndex, item.text, item);
                     });
