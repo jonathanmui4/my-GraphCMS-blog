@@ -1,22 +1,25 @@
 import {useEffect, useState} from "react";
-import {getRecentPosts, getSimilarPosts} from "../../services";
+import {getRecentCategoryPosts, getRecentPosts, getSimilarPosts} from "../../services";
 import moment from "moment";
 import Image from "next/image";
 import Link from "next/link";
 
 function PostWidget(props) {
-    const {categories, slug} = props;
+    const {categories, slug, category} = props;
     const [relatedPosts, setRelatedPosts] = useState([]);
 
     useEffect(() => {
         if (slug) {
             getSimilarPosts(categories, slug)
                 .then((result) => setRelatedPosts(result));
+        } else if (category) {
+            getRecentCategoryPosts(category)
+                .then((result) => setRelatedPosts(result));
         } else {
             getRecentPosts()
                 .then((result) => setRelatedPosts(result));
         }
-    }, [slug]);
+    }, [slug, category]);
 
     return (
         <div className="bg-gray-100 shadow-lg rounded-lg p-8 mb-8">

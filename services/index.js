@@ -94,6 +94,29 @@ export async function getRecentPosts() {
     return result.posts;
 }
 
+export async function getRecentCategoryPosts(category) {
+    //todo: Find out query to get recent category posts
+    const query = gql`
+        query GetPostDetails() {
+            posts(
+                orderBy: createdAt_ASC 
+                last: 3
+            ) {
+                title
+                image {
+                    url
+                }
+                createdAt
+                slug
+            }
+        }
+    `;
+
+    const result = await request(graphqlAPI, query);
+
+    return result.posts;
+}
+
 export async function getSimilarPosts(categories, slug) {
     const query = gql`
         query GetPostDetails($slug: String!, $categories: [String!]) {

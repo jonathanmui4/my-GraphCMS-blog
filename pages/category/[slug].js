@@ -4,7 +4,7 @@ import PostWidget from "../../components/posts/post-widget";
 import PostCard from "../../components/posts/post-card";
 
 function CategoryPage(props) {
-    const {posts} = props;
+    const {posts, category} = props;
 
     return (
         <div className="container mt-4 mx-auto px-10 mb-8">
@@ -16,6 +16,7 @@ function CategoryPage(props) {
                 </div>
                 <div className="col-span-1 lg:col-span-4">
                     <div className="relative lg:sticky top-8">
+                        <PostWidget category={category} />
                         <CategoriesWidget />
                     </div>
                 </div>
@@ -40,7 +41,7 @@ export async function getStaticProps(context) {
     const data = await getCategoryPosts(slug);
 
     return {
-        props: { posts: data },
+        props: { posts: data, category: slug },
         revalidate: 600
     }
 }
