@@ -4,6 +4,8 @@ import PostWidget from "../../components/posts/post-widget";
 import PostCard from "../../components/posts/post-card";
 import {useRouter} from "next/router";
 import Loader from "../../components/loader";
+import {Fragment} from "react";
+import Head from "next/head";
 
 function CategoryPage(props) {
     const {posts, category} = props;
@@ -15,21 +17,30 @@ function CategoryPage(props) {
     }
 
     return (
-        <div className="container mt-4 mx-auto px-10 mb-8">
-            <div className="grid grid-cols-1 lg:grid-cols-12 gap-12">
-                <div className="col-span-1 lg:col-span-8">
-                    {posts.map((post, index) => (
-                        <PostCard key={index} post={post.node} />
-                    ))}
-                </div>
-                <div className="col-span-1 lg:col-span-4">
-                    <div className="relative lg:sticky top-8">
-                        <PostWidget category={category} />
-                        <CategoriesWidget />
+        <Fragment>
+            <Head>
+                <title>{category}</title>
+                <meta
+                    name='description'
+                    content={'posts from ' + category}
+                />
+            </Head>
+            <div className="container mt-4 mx-auto px-10 mb-8">
+                <div className="grid grid-cols-1 lg:grid-cols-12 gap-12">
+                    <div className="col-span-1 lg:col-span-8">
+                        {posts.map((post, index) => (
+                            <PostCard key={index} post={post.node} />
+                        ))}
+                    </div>
+                    <div className="col-span-1 lg:col-span-4">
+                        <div className="relative lg:sticky top-8">
+                            <PostWidget category={category} />
+                            <CategoriesWidget />
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
+        </Fragment>
     )
 }
 

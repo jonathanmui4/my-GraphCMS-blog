@@ -95,7 +95,6 @@ export async function getRecentPosts() {
 }
 
 export async function getRecentCategoryPosts(category) {
-    //todo: Find out query to get recent category posts
     const query = gql`
         query GetPostDetails($category: [String!]) {
             posts(

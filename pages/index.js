@@ -6,7 +6,6 @@ import Hero from "../components/hero";
 import {Fragment} from "react";
 import {getPosts} from "../services";
 import FeaturedPosts from "../components/sections/featured-posts";
-import Loader from "../components/loader";
 
 export default function Home(props) {
     const {posts} = props;
