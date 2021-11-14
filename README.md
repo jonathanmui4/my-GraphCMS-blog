@@ -1,29 +1,44 @@
-# Next.js + Tailwind CSS Example
+# Personal Blog Site
 
-This example shows how to use [Tailwind CSS](https://tailwindcss.com/) [(v2.2)](https://blog.tailwindcss.com/tailwindcss-2-2) with Next.js. It follows the steps outlined in the official [Tailwind docs](https://tailwindcss.com/docs/guides/nextjs).
+## Credits
 
-It uses the new [`Just-in-Time Mode`](https://tailwindcss.com/docs/just-in-time-mode) for Tailwind CSS.
+This project would not have been possible without the guidance and kindness of the following instructors:
+- [Javascript Mastery Youtube Tutorial](https://www.youtube.com/watch?v=HYv55DhgTuA&ab_channel=JavaScriptMastery)
+- [Academind Nextjs Course](https://pro.academind.com/p/nextjs-react-the-complete-guide)
 
-## Preview
+## Tech stacks and frameworks
 
-Preview the example live on [StackBlitz](http://stackblitz.com/):
+- Nextjs and React
+- Tailwind CSS
+- Graphql
+- Graph CMS
 
-[![Open in StackBlitz](https://developer.stackblitz.com/img/open_in_stackblitz.svg)](https://stackblitz.com/github/vercel/next.js/tree/canary/examples/with-tailwindcss)
+## Features
 
-## Deploy your own
+### Responsive design 
 
-Deploy the example using [Vercel](https://vercel.com?utm_source=github&utm_medium=readme&utm_campaign=next-example):
+**Desktop home page:**
 
-[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/git/external?repository-url=https://github.com/vercel/next.js/tree/canary/examples/with-tailwindcss&project-name=with-tailwindcss&repository-name=with-tailwindcss)
+![Picture of Homepage 1](C:\Users\Jonathan\Documents\Web app Projects\graphcms-blog\docs\Images\HomePage1.JPG)
+![Picture of homepage 2](C:\Users\Jonathan\Documents\Web app Projects\graphcms-blog\docs\Images\HomePage2.JPG)
 
-## How to use
 
-Execute [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app) with [npm](https://docs.npmjs.com/cli/init) or [Yarn](https://yarnpkg.com/lang/en/docs/cli/create/) to bootstrap the example:
+**Mobile home page:**
 
-```bash
-npx create-next-app --example with-tailwindcss with-tailwindcss-app
-# or
-yarn create next-app --example with-tailwindcss with-tailwindcss-app
-```
+![Picture of mobile navbar 1](C:\Users\Jonathan\Documents\Web app Projects\graphcms-blog\docs\Images\MobileNavbar1.JPG)
+![Picture of mobile navbar 2](C:\Users\Jonathan\Documents\Web app Projects\graphcms-blog\docs\Images\MobileNavbar2.JPG)
+![Picture of mobile carousel](C:\Users\Jonathan\Documents\Web app Projects\graphcms-blog\docs\Images\MobileCarousel.JPG)
 
-Deploy it to the cloud with [Vercel](https://vercel.com/new?utm_source=github&utm_medium=readme&utm_campaign=next-example) ([Documentation](https://nextjs.org/docs/deployment)).
+### Comments segment for visitors
+
+![Picture of comments segment](C:\Users\Jonathan\Documents\Web app Projects\graphcms-blog\docs\Images\CommentsSection.JPG)
+
+### Content Management with Graph CMS
+
+**Filter Comments using Graph cms to ensure only acceptable comments are posted:**
+
+![Comment filter](C:\Users\Jonathan\Documents\Web app Projects\graphcms-blog\docs\Images\CommentFilter.JPG)
+
+**Manage blog content without editting the code**
+
+![Content Management System](C:\Users\Jonathan\Documents\Web app Projects\graphcms-blog\docs\Images\ContentManagement.JPG)

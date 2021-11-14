@@ -5,8 +5,6 @@ import moment from "moment";
 function PostDetail(props) {
     const {post} = props;
 
-    console.log(post.content.raw.children);
-
     function getContentFragment(index, text, obj, type) {
         let modifiedText = text;
 
