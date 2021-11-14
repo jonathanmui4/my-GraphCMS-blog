@@ -4,7 +4,7 @@ import moment from "moment";
 
 function PostDetail(props) {
     const {post} = props;
-    console.log(post.content.raw.children);
+
     function getContentFragment(index, text, obj, type, href) {
         let modifiedText = text;
 
@@ -67,19 +67,17 @@ function PostDetail(props) {
                         layout="responsive"
                     />
                 );
-            case 'bulleted-list': //Not working yet
+            case 'bulleted-list':
                 return (
                     <ul className="list-disc">
-                        <li>
-                            {modifiedText.map((item, i) => <Fragment key={i}>{item}</Fragment>)}
-                        </li>
+                        {modifiedText.map((item, i) => <li key={i}>{item}</li>)}
                     </ul>
                 );
-            case 'numbered-list': //Not working yet
+            case 'numbered-list':
                 return (
                     <ul className="list-decimal">
                         <li>
-                            {modifiedText.map((item, i) => <Fragment key={i}>{item}</Fragment>)}
+                            {modifiedText.map((item, i) => <li key={i}>{item}</li>)}
                         </li>
                     </ul>
                 );
@@ -133,6 +131,12 @@ function PostDetail(props) {
                 <h1 className="mb-8 text-3xl font-semibold">{post.title}</h1>
                 {post.content.raw.children.map((typeObj, index) => {
                     const children = typeObj.children.map((item, itemIndex) => {
+                        if (typeObj.type === "bulleted-list") {
+                            return getContentFragment(itemIndex, item.children[0].children[0].text, item);
+                        }
+                        if (typeObj.type === "numbered-list") {
+                            return getContentFragment(itemIndex, item.children[0].children[0].text, item);
+                        }
                         if (item.type === "link") {
                             return getContentFragment(itemIndex, item.children[0].text, item, null, item.href);
                         }
