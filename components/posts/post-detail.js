@@ -5,6 +5,8 @@ import moment from "moment";
 function PostDetail(props) {
     const {post} = props;
 
+    console.log(post.content.raw.children);
+
     function getContentFragment(index, text, obj, type) {
         let modifiedText = text;
 
@@ -18,6 +20,9 @@ function PostDetail(props) {
             }
             if (obj.underline) {
                 modifiedText = (<u key={index}>{text}</u>);
+            }
+            if (obj.bold && obj.underline) {
+                modifiedText = (<b key={index}><u>{text}</u></b>);
             }
         }
 
@@ -51,6 +56,28 @@ function PostDetail(props) {
                         width={obj.width}
                         layout="responsive"
                     />
+                );
+            case 'bulleted-list': //Not working yet
+                return (
+                    <ul className="list-disc">
+                        <li>
+                            {modifiedText.map((item, i) => <Fragment key={i}>{item}</Fragment>)}
+                        </li>
+                    </ul>
+                );
+            case 'numbered-list': //Not working yet
+                return (
+                    <ul className="list-decimal">
+                        <li>
+                            {modifiedText.map((item, i) => <Fragment key={i}>{item}</Fragment>)}
+                        </li>
+                    </ul>
+                );
+            case 'block-quote':
+                return (
+                    <blockquote className="bg-gray-300 text-black text-center">
+                        {modifiedText.map((item, i) => <Fragment key={i}>{item}</Fragment>)}
+                    </blockquote>
                 );
             default:
                 return modifiedText;
