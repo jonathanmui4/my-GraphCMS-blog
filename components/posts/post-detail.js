@@ -4,9 +4,16 @@ import moment from "moment";
 
 function PostDetail(props) {
     const {post} = props;
-
     function getContentFragment(index, text, obj, type) {
         let modifiedText = text;
+
+        if(text.includes("http")) {
+            modifiedText = (
+                <a key={index} href={text} target="_blank" className="transition duration-200 hover:underline text-blue-500">
+                    {text}
+                </a>
+            );
+        }
 
         //Check object
         if (obj) {
@@ -35,7 +42,11 @@ function PostDetail(props) {
             case 'paragraph':
                 return (
                     <p key={index} className="mb-8">
-                        {modifiedText.map((item, i) => <Fragment key={i}>{item}</Fragment>)}
+                        {modifiedText.map((item, i) => {
+                            return (
+                                <Fragment key={i}>{item}</Fragment>
+                            );
+                        })}
                     </p>
                 );
             case 'heading-4':
@@ -80,6 +91,7 @@ function PostDetail(props) {
             default:
                 return modifiedText;
         }
+
     }
 
     return (
@@ -119,7 +131,12 @@ function PostDetail(props) {
                 </div>
                 <h1 className="mb-8 text-3xl font-semibold">{post.title}</h1>
                 {post.content.raw.children.map((typeObj, index) => {
-                    const children = typeObj.children.map((item, itemIndex) => getContentFragment(itemIndex, item.text, item));
+                    const children = typeObj.children.map((item, itemIndex) => {
+                        if (item.type === "link") {
+                            return getContentFragment(itemIndex, item.href, item);
+                        }
+                        return getContentFragment(itemIndex, item.text, item);
+                    });
                     return getContentFragment(index, children, typeObj, typeObj.type);
                 })}
             </div>
