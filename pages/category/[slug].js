@@ -2,9 +2,17 @@ import {getCategories, getCategoryPosts, getPostDetails, getPosts} from "../../s
 import CategoriesWidget from "../../components/categories-widget";
 import PostWidget from "../../components/posts/post-widget";
 import PostCard from "../../components/posts/post-card";
+import {useRouter} from "next/router";
+import Loader from "../../components/loader";
 
 function CategoryPage(props) {
     const {posts, category} = props;
+    const router = useRouter();
+
+    //Show loading screen if unable to load props
+    if(router.isFallback) {
+        return <Loader />;
+    }
 
     return (
         <div className="container mt-4 mx-auto px-10 mb-8">
