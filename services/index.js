@@ -97,8 +97,9 @@ export async function getRecentPosts() {
 export async function getRecentCategoryPosts(category) {
     //todo: Find out query to get recent category posts
     const query = gql`
-        query GetPostDetails() {
+        query GetPostDetails($category: [String!]) {
             posts(
+                where: {categories_some: { slug_in: $category }}
                 orderBy: createdAt_ASC 
                 last: 3
             ) {
@@ -112,7 +113,7 @@ export async function getRecentCategoryPosts(category) {
         }
     `;
 
-    const result = await request(graphqlAPI, query);
+    const result = await request(graphqlAPI, query, {category});
 
     return result.posts;
 }

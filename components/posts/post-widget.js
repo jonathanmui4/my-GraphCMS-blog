@@ -8,12 +8,14 @@ function PostWidget(props) {
     const {categories, slug, category} = props;
     const [relatedPosts, setRelatedPosts] = useState([]);
 
+    const categoryArray = [category];
+
     useEffect(() => {
         if (slug) {
             getSimilarPosts(categories, slug)
                 .then((result) => setRelatedPosts(result));
         } else if (category) {
-            getRecentCategoryPosts(category)
+            getRecentCategoryPosts(categoryArray)
                 .then((result) => setRelatedPosts(result));
         } else {
             getRecentPosts()
