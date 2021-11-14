@@ -10,16 +10,23 @@ function PostWidget(props) {
 
     const categoryArray = [category];
 
+
     useEffect(() => {
         if (slug) {
             getSimilarPosts(categories, slug)
                 .then((result) => setRelatedPosts(result));
         } else if (category) {
             getRecentCategoryPosts(categoryArray)
-                .then((result) => setRelatedPosts(result));
+                .then((result) => {
+                    const sortedResult = result.sort((a,b) => (a.createdAt < b.createdAt) ? 1 : -1);
+                    setRelatedPosts(sortedResult);
+                });
         } else {
             getRecentPosts()
-                .then((result) => setRelatedPosts(result));
+                .then((result) => {
+                    const sortedResult = result.sort((a,b) => (a.createdAt < b.createdAt) ? 1 : -1);
+                    setRelatedPosts(sortedResult);
+                });
         }
     }, [slug, category]);
 
@@ -28,6 +35,9 @@ function PostWidget(props) {
             <h3 className="text-xl mb-8 font-semibold border-b pb-4">
                 {slug ? 'Related Posts' : 'Recent Posts'}
             </h3>
+            {
+
+            }
             {relatedPosts.map((post) => {
                 return (
                     <div key={post.title} className="flex items-center w-full mb-4">

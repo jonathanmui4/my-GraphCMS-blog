@@ -9,6 +9,7 @@ import FeaturedPosts from "../components/sections/featured-posts";
 
 export default function Home(props) {
     const {posts} = props;
+
     return (
         <Fragment>
             <Head>
@@ -44,9 +45,10 @@ export default function Home(props) {
 
 export async function getStaticProps() {
     const posts = (await getPosts()) || [];
+    const sortedPosts = posts.sort((a,b) => (a.createdAt > b.createdAt) ? 1 : -1);
 
     return {
-        props: {posts},
+        props: {posts: sortedPosts},
         revalidate: 600
     };
 }

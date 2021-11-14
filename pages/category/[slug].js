@@ -49,7 +49,7 @@ export async function getStaticPaths() {
 
     return {
         paths: categories.map(({ slug }) => ({ params: { slug } })),
-        fallback: false,
+        fallback: true,
     }
 }
 
@@ -58,9 +58,10 @@ export async function getStaticProps(context) {
     const { slug } = params;
 
     const data = await getCategoryPosts(slug);
+    const sortedPosts = data.sort((a,b) => (a.createdAt > b.createdAt) ? 1 : -1);
 
     return {
-        props: { posts: data, category: slug },
+        props: { posts: sortedPosts, category: slug },
         revalidate: 600
     }
 }
