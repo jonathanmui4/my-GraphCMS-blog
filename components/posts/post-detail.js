@@ -87,6 +87,13 @@ function PostDetail(props) {
                         {modifiedText.map((item, i) => <Fragment key={i}>{item}</Fragment>)}
                     </blockquote>
                 );
+            case 'iframe':
+                return (
+                    <iframe width={obj.width} height={obj.height} src={obj.url}
+                            title="YouTube video player" frameBorder="0"
+                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                            allowFullScreen></iframe>
+                );
             default:
                 return modifiedText;
         }
