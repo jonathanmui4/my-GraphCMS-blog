@@ -22,6 +22,7 @@ export default function Home(props) {
                     name='keywords'
                     content='nus, ceg, computer engineering, student life'
                 />
+                <meta name="google-site-verification" content="i5atFIldhu9wvDrYq9H6H0WjAqLVUVBphgwFgYgJ7mA" />
                 <link rel="icon" href="/favicon.ico"/>
             </Head>
             <Hero />
