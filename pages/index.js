@@ -18,6 +18,10 @@ export default function Home(props) {
                     name='description'
                     content='An average NUS Computer Engineering (CEG) student sharing about his student life, projects and module reviews.'
                 />
+                <meta
+                    name='keywords'
+                    content='nus, ceg, computer engineering, student life'
+                />
                 <link rel="icon" href="/favicon.ico"/>
             </Head>
             <Hero />
